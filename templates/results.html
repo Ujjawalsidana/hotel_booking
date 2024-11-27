@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Available Hotels</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Available Hotels in {{ city }} on {{ date }}</h1>
+        {% if hotels %}
+            <ul>
+                {% for hotel in hotels %}
+                    <li>
+                        <h2>{{ hotel['name'] }}</h2>
+                        <p>Room Types:</p>
+                        <ul>
+                            {% for room in hotel['rooms'] %}
+                                <li>{{ room }}</li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No hotels available for the selected date and city.</p>
+        {% endif %}
+        <a href="/">Go Back</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ hotel.name }} - Room Details</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            color: #333;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .room-img {
+            height: 100%;
+            object-fit: contain;
+            width:100%
+            
+        }
+
+        .btn-book {
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-book:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-4">Rooms at {{ hotel.name }}</h1>
+        <div class="row gy-4">
+            {% for room in hotel.rooms %}
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://luxurylaunches.com/wp-content/uploads/2016/08/Burj-Al-Arab-Panoramic-Suite-View-Upper-Level-1170x782.jpg" alt="{{ room['image'] }}" alt="{{ room['type'] }}" class="card-img-top room-img">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ room['type'] }}</h5>
+                        <a href="{{ url_for('book_room', hotel_name=hotel.name, room_type=room['type']) }}" class="btn btn-primary btn-book">Book Now</a>
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
